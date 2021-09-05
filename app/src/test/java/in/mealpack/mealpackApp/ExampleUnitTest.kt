@@ -1,4 +1,4 @@
-package `in`.mealpack.MealPack
+package `in`.mealpack.mealpackApp
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package `in`.mealpack.MealPack
+package `in`.mealpack.mealpackApp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

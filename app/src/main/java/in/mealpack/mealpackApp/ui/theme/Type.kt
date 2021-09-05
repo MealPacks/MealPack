@@ -1,4 +1,4 @@
-package `in`.mealpack.MealPack.ui.theme
+package `in`.mealpack.mealpackApp.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

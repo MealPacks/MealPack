@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="background_grey" >#FFF5F5F5</color>
+    <color name="status_bar">#FFE1E1E1</color>
+    <color name="black"> #FF000000</color>
+    <color name="card_light_grey">#FFEBEBEB</color>
+    <color name="orange_accent">#FFFA4A0C</color>
+    <color name="card_white">#FFFFFFFF</color>
+
+    <color name="primary_button_color">#FFFA4A0C</color>
+    <color name="disabled_button">#FFFFAA8D</color>
+    <color name="delete_button">#FFDF2C2C</color>
+
+    <color name="text_black">#FF050505</color>
+    <color name="text_white">#FFFFFFFF</color>
+    <color name="light_text_color">#FF929292</color>
+    <color name="hint_text_color">#FF929292</color>
+    <color name="text_main_theme_color">#FFFA4A0C</color>
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>
