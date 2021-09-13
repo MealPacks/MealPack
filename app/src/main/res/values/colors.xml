@@ -8,10 +8,12 @@
     <color name="orange_accent">#FFFA4A0C</color>
     <color name="card_white">#FFFFFFFF</color>
 
+<!--    Buttons-->
     <color name="primary_button_color">#FFFA4A0C</color>
     <color name="disabled_button">#FFFFAA8D</color>
     <color name="delete_button">#FFDF2C2C</color>
 
+<!--    Text-->
     <color name="text_black">#FF050505</color>
     <color name="text_white">#FFFFFFFF</color>
     <color name="light_text_color">#FF929292</color>
