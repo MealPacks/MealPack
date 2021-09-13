@@ -8,10 +8,10 @@ android {
 
     defaultConfig {
         applicationId = ConfigVersions.appId
-        minSdk = ConfigVersions.minSdk
-        targetSdk = ConfigVersions.targetSdk
-        versionCode = ConfigVersions.versionCode
-        versionName = ConfigVersions.versionName
+        minSdk ConfigVersions.minSdk
+        targetSdk ConfigVersions.targetSdk
+        versionCode ConfigVersions.versionCode
+        versionName ConfigVersions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
