@@ -17,7 +17,8 @@ private val LightColorPalette = lightColors(
     onBackground = TextBlack,
     onPrimary = TextWhite,
     surface = CardWhite,
-    onSurface = Black
+    onSurface = Black,
+    primaryVariant = WhiteButton
 
 
     /* Other default colors to override

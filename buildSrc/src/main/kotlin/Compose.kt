@@ -6,12 +6,16 @@ object Compose {
     const val ui = "androidx.compose.ui:ui:$composeVersion"
     const val material = "androidx.compose.material:material:$composeVersion"
     const val ui_tooling_preview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+    const val compose_runtime_livedata="androidx.compose.runtime:runtime-livedata:$composeVersion"
 
     private const val navigationVersion = "2.4.0-alpha04"
     const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"
 
     private const val hiltNavigationComposeVersion = "1.0.0-alpha03"
     const val hiltNavigation = "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
+
+    private const val lifecycleViewmodelComposeVersion = "2.4.0-beta01"
+    const val lifecycleViewmodelCompose="androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleViewmodelComposeVersion"
 }
 
 object ComposeTest {

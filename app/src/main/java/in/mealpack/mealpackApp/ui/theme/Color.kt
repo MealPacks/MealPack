@@ -21,6 +21,8 @@ val CardWhite = Color(0xFFFFFFFF)
 val PrimaryButtonColor = Color(0xFFFA4A0C)
 val DisabledButton = Color(0xFFFFAA8D)
 val DeleteButton = Color(0xFFDF2C2C)
+val WhiteButton = Color(0xFFFFFFFF)
+
 
 
 // Text Colors

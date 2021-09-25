@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -49,6 +51,7 @@ android {
 
 dependencies {
 
+
     implementation (AndroidX.coreKtx)
     implementation (AndroidX.appCompat)
     implementation (Google.material)
@@ -59,10 +62,22 @@ dependencies {
     implementation (Compose.material)
     implementation (Compose.ui_tooling_preview)
     implementation (Compose.activity)
+    implementation (Compose.compose_runtime_livedata)
+    implementation (Compose.lifecycleViewmodelCompose)
 
     //Test
     testImplementation (Junit.junit4)
     androidTestImplementation (Junit.ext_junit)
     androidTestImplementation (ComposeTest.uiTestJunit4)
     debugImplementation (ComposeTest.ui_tooling)
+
+    //Auth
+    implementation platform(Firebase.firebaseBom)
+    implementation (Firebase.firebaseAuth)
+    implementation (Firebase.playServicesAuth)
+
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.2-native-mt')
 }
