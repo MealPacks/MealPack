@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'com.google.gms.google-services'
 }
 
@@ -40,18 +41,22 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeVersion
-        kotlinCompilerVersion '1.5.21'
+        kotlinCompilerVersion Kotlin.kotlin_version
     }
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            exclude 'META-INF/gradle/incremental.annotation.processors'
         }
     }
 }
 
 dependencies {
 
+    //Modules
+    implementation(project(Modules.ui_login))
 
+    //Core
     implementation (AndroidX.coreKtx)
     implementation (AndroidX.appCompat)
     implementation (Google.material)
@@ -64,6 +69,9 @@ dependencies {
     implementation (Compose.activity)
     implementation (Compose.compose_runtime_livedata)
     implementation (Compose.lifecycleViewmodelCompose)
+    implementation (Compose.hiltNavigation)
+    implementation (Compose.navigation)
+
 
     //Test
     testImplementation (Junit.junit4)
@@ -75,9 +83,17 @@ dependencies {
     implementation platform(Firebase.firebaseBom)
     implementation (Firebase.firebaseAuth)
     implementation (Firebase.playServicesAuth)
+    implementation (Firebase.firebaseFirestoreKtx)
 
+    //kotlin coroutines
+    implementation(Kotlin.kotlinxCoroutinesCore)
+    implementation(Kotlin.kotlinxCoroutinesAndroid)
+    implementation(Kotlin.kotlinxCoroutinesPlayServices)
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
-    implementation('org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.2-native-mt')
+    //Hilt
+    implementation(Hilt.android)
+    kapt(Hilt.compiler)
+
+    //Timber
+    implementation(Timber.timber)
 }

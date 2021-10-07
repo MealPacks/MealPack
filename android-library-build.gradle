@@ -1,0 +1,72 @@
+// build.gradle for android libraries that contain UI
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+//plugins {
+//    id 'com.android.library'
+//    id 'kotlin-android'
+//    id 'kotlin-kapt'
+//}
+
+android {
+    compileSdkVersion ConfigVersions.compileSdk
+    buildToolsVersion ConfigVersions.buildTools
+
+    defaultConfig {
+        minSdk ConfigVersions.minSdk
+        targetSdk ConfigVersions.targetSdk
+        versionCode ConfigVersions.versionCode
+        versionName ConfigVersions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion Compose.composeVersion
+        kotlinCompilerVersion Kotlin.kotlin_version
+    }
+    packagingOptions {
+        exclude("META-INF/AL2.0")
+        exclude("META-INF/LGPL2.1")
+    }
+}
+
+dependencies{
+
+    implementation AndroidX.coreKtx
+    implementation AndroidX.appCompat
+    implementation AndroidX.lifecycleVmKtx
+
+    implementation Compose.activity
+    implementation Compose.ui
+    implementation Compose.material
+    implementation ComposeTest.ui_tooling
+    implementation Compose.navigation
+    implementation Compose.hiltNavigation
+
+    implementation Google.material
+
+    implementation Hilt.android
+    kapt Hilt.compiler
+}

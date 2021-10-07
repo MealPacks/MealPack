@@ -1,0 +1,10 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<resources>
+    <string name="default_web_client_id" translatable="false">943588236583-tplhahslpd2lq54qpqt04ghnd6t3ah4b.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">943588236583</string>
+    <string name="google_api_key" translatable="false">AIzaSyCov-44gsjKyP4j0pnpI-uiulSgW0Fc348</string>
+    <string name="google_app_id" translatable="false">1:943588236583:android:53470c3cc671fd46721d02</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyCov-44gsjKyP4j0pnpI-uiulSgW0Fc348</string>
+    <string name="google_storage_bucket" translatable="false">mealpack-c4e60.appspot.com</string>
+    <string name="project_id" translatable="false">mealpack-c4e60</string>
+</resources>

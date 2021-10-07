@@ -2,6 +2,8 @@ object Modules {
 
     const val app=":app"
 
-    const val auth=":authentication"
+    const val components=":components"
+    const val ui_login=":ui-login"
+    const val core=":core"
 
 }

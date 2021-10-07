@@ -7,3 +7,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "MealPack"
 include ':app'
+include ':components'
+include ':ui-login'
+include ':core'
