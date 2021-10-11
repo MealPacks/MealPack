@@ -3,6 +3,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 //plugins {
 //    id 'com.android.library'
 //    id 'kotlin-android'
@@ -54,19 +55,22 @@ android {
 
 dependencies{
 
+    //core
     implementation AndroidX.coreKtx
     implementation AndroidX.appCompat
     implementation AndroidX.lifecycleVmKtx
+    implementation AndroidX.lifecycle_runtime
 
+    //Compose
     implementation Compose.activity
     implementation Compose.ui
     implementation Compose.material
+    implementation Compose.ui_tooling_preview
     implementation ComposeTest.ui_tooling
     implementation Compose.navigation
     implementation Compose.hiltNavigation
 
-    implementation Google.material
-
+    //Hilt
     implementation Hilt.android
     kapt Hilt.compiler
 }

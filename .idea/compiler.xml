@@ -5,7 +5,11 @@
       <module name="MealPack.app" target="11" />
       <module name="MealPack.buildSrc" target="11" />
       <module name="MealPack.components" target="11" />
+      <module name="MealPack.meal-data" target="11" />
+      <module name="MealPack.navigation" target="11" />
       <module name="MealPack.ui-login" target="11" />
+      <module name="MealPack.ui-meals" target="11" />
+      <module name="MealPack.user-data" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

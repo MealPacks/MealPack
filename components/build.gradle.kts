@@ -4,7 +4,9 @@ apply {
 
 
 dependencies {
-//    "implementation"(project(Modules.core))
+    "implementation"(project(Modules.core))
+    "implementation"(Compose.materialIconsExtended)
+
 }
 
 

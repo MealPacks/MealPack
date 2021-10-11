@@ -28,7 +28,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseUser
@@ -41,11 +40,13 @@ fun LoginUi(
     progressIndicatorColor: Color = MaterialTheme.colors.primary,
     loadingText: String = "loading...",
     backgroundColor: Color = MaterialTheme.colors.surface,
+    onSuccessUserAuth: () -> Unit
 
-    ) {
-//    val signInViewModel: LoginViewModel = viewModel()
+) {
 
     val state by loginViewModel.loadingState.collectAsState()
+
+    val enabled by loginViewModel.enabled.collectAsState()
 
     val context = LocalContext.current
 
@@ -62,47 +63,41 @@ fun LoginUi(
                 Log.w("Login", "Google sign in failed", e)
             }
         }
-//    Box(
-//        modifier = modifier
-//            .fillMaxSize()
-//            .padding(start = 46.dp)
-//            .clip(RoundedCornerShape(topStart = 200.dp))
-//            .background(MaterialTheme.colors.primary)
-//    ) {
-        Column(
-            modifier = modifier
-                .padding(start = 38.dp)
-                .fillMaxSize()
-//                .align(Alignment.BottomCenter)
-                .clip(RoundedCornerShape(topStart = 200.dp))
-                .background(MaterialTheme.colors.primary)
-                .padding(start=16.dp,top=16.dp,bottom=16.dp,end = 16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.app_img),
-                contentDescription = "app img",
-                modifier = Modifier
-                    .size(150.dp)
-                    .clip(CircleShape),
-            )
-            Text(
-                text = "Meal Packs",
-                fontSize = 32.sp
-            )
-            GoogleButton(
-                state = state,
-                loadingText = loadingText,
-                progressIndicatorColor = progressIndicatorColor,
-                modifier= Modifier.fillMaxWidth()
-            ) {
-                val gso = loginViewModel.getGso(token)
-                val googleSignInClient = GoogleSignIn.getClient(context, gso)
-                authResultLauncher.launch(googleSignInClient.signInIntent)
-            }
 
-//        }
+    Column(
+        modifier = modifier
+            .padding(start = 38.dp)
+            .fillMaxSize()
+            .clip(RoundedCornerShape(topStart = 200.dp))
+            .background(MaterialTheme.colors.primary)
+            .padding(start = 16.dp, top = 16.dp, bottom = 16.dp, end = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.app_img),
+            contentDescription = "app img",
+            modifier = Modifier
+                .size(150.dp)
+                .clip(CircleShape),
+        )
+        Text(
+            text = "Meal Packs",
+            fontSize = 32.sp
+        )
+        GoogleButton(
+            state = state,
+            loadingText = loadingText,
+            progressIndicatorColor = progressIndicatorColor,
+            enabled = enabled
+        ) {
+            val gso = loginViewModel.getGso(token)
+            val googleSignInClient = GoogleSignIn.getClient(context, gso)
+            authResultLauncher.launch(googleSignInClient.signInIntent)
+        }
+        if (state == LoadingState.LOADED) {
+            onSuccessUserAuth()
+        }
     }
 }
 
@@ -113,6 +108,7 @@ fun GoogleButton(
     loadingText: String = "loading...",
     progressIndicatorColor: Color = MaterialTheme.colors.primary,
     modifier: Modifier = Modifier,
+    enabled: Boolean,
     onclick: () -> Unit
 ) {
     Button(
@@ -131,10 +127,11 @@ fun GoogleButton(
                 )
             )
             .clip(RoundedCornerShape(30.dp))
-            .padding(bottom=4.dp,end = 4.dp)
+            .padding(bottom = 4.dp, end = 4.dp)
             .zIndex(20f),
 //            .background(MaterialTheme.colors.primaryVariant),
         elevation = ButtonDefaults.elevation(20.dp),
+        enabled = enabled
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_google),
@@ -146,7 +143,7 @@ fun GoogleButton(
             text = if (state.status == LoadingState.Status.LOADING) loadingText
             else buttonText,
             color = Color.Black,
-            fontSize = 20.sp
+            fontSize = 16.sp
         )
 
         if (state.status == LoadingState.Status.LOADING) {
@@ -165,10 +162,3 @@ fun GoogleButton(
 }
 
 
-//@Preview
-//@Composable
-//fun ShowLoginUi() {
-//    MealPackTheme {
-//        LoginUi(signInViewModel = viewModel(),currentUser = null)
-//    }
-//}

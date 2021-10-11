@@ -7,6 +7,8 @@ object Compose {
     const val material = "androidx.compose.material:material:$composeVersion"
     const val ui_tooling_preview = "androidx.compose.ui:ui-tooling-preview:$composeVersion"
     const val compose_runtime_livedata="androidx.compose.runtime:runtime-livedata:$composeVersion"
+    const val materialIconsExtended="androidx.compose.material:material-icons-extended:$composeVersion"
+
 
     private const val navigationVersion = "2.4.0-alpha04"
     const val navigation = "androidx.navigation:navigation-compose:$navigationVersion"

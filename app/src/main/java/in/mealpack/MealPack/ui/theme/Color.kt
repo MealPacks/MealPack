@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 
 // Main App Theme Color Accent FA4A0C
 
-val BackgroundGrey = Color(0xFFF5F5F5)
+val BackgroundGrey = Color(0xFFE6E6E6)
 val StatusBar = Color(0xFFE1E1E1)
 val Black = Color(0xFF000000)
 val CardLightGrey = Color(0xFFEBEBEB)
