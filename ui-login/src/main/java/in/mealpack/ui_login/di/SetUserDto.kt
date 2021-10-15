@@ -1,6 +1,8 @@
 package `in`.mealpack.ui_login.di
 
-import `in`.mealpack.user_data.SetUserDtoToDbImpl
+import `in`.mealpack.user_data.UserNetworkMapper
+import `in`.mealpack.user_data.UserRepository
+import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,8 +14,11 @@ import javax.inject.Singleton
 object SetUserDto {
     @Singleton
     @Provides
-    fun providesSetUserDto(): SetUserDtoToDbImpl {
-        val setUserDtoToDbImpl = SetUserDtoToDbImpl()
+    fun providesUserRepository(
+        firestoreDb:FirebaseFirestore,
+        userNetworkMapper: UserNetworkMapper
+    ): UserRepository {
+        val setUserDtoToDbImpl = UserRepository(firestoreDb,userNetworkMapper)
         return setUserDtoToDbImpl
     }
 

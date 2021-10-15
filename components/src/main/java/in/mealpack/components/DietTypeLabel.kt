@@ -1,7 +1,6 @@
 package `in`.mealpack.components
 
-import `in`.mealpack.components.R
-import `in`.mealpack.core.domain.DietType
+import `in`.mealpack.core.DietType
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -20,7 +19,7 @@ fun DietTypeLabel(
     modifier: Modifier = Modifier,
     dietType: DietType,
     contentDes: String,
-    color:Color =Color.White
+    color: Color = Color.White
 ) {
     when (dietType) {
         is DietType.NonVeg -> Row(
@@ -66,5 +65,5 @@ fun DietTypeLabel(
 @Composable
 fun ShowDietTypeLabel() {
 
-        DietTypeLabel(dietType = DietType.Veg, contentDes = "Veg")
+    DietTypeLabel(dietType = DietType.Veg, contentDes = "Veg")
 }

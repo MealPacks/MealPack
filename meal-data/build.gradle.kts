@@ -3,5 +3,10 @@ apply{
 }
 
 dependencies{
+    "implementation"(project(Modules.core))
+    "api"(project(Modules.meal_domain))
 
+    //FireStore
+    "implementation" (platform(Firebase.firebaseBom))
+    "implementation" (Firebase.firebaseFirestoreKtx)
 }

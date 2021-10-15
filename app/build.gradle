@@ -194,6 +194,9 @@ dependencies {
     implementation(Kotlin.kotlinxCoroutinesAndroid)
     implementation(Kotlin.kotlinxCoroutinesPlayServices)
 
+    //Serialization
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0"
+
     //Hilt
     implementation(Hilt.android)
     kapt(Hilt.compiler)

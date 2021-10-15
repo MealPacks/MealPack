@@ -5,5 +5,5 @@ apply{
 dependencies{
     "implementation"(project(Modules.components))
     "implementation"(project(Modules.core))
-    "implementation"(project(Modules.meal_domain))
+    "implementation"(project(Modules.meal_data))
 }

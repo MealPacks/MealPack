@@ -10,6 +10,8 @@ object AndroidX {
 
     private const val lifecycleVmKtxVersion = "2.3.1"
     const val lifecycleVmKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVmKtxVersion"
+
+    const val runtimeLivedata="androidx.compose.runtime:runtime-livedata:${Compose.composeVersion}"
 }
 
 object AndroidXTest {

@@ -1,6 +1,6 @@
 package `in`.mealpack.mealpack_testing_new_things.ui.components.meals
 
-import `in`.mealpack.core.domain.DietType
+import `in`.mealpack.core.DietType
 import `in`.mealpack.meal_domain.MealCardData
 import `in`.mealpack.meal_domain.MealsCovered
 import `in`.mealpack.ui_meals.R

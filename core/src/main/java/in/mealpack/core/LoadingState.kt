@@ -1,4 +1,4 @@
-package `in`.mealpack.core.domain
+package `in`.mealpack.core
 
 data class LoadingState private constructor(val status: Status, val msg: String? = null) {
     companion object {

@@ -2,6 +2,7 @@ package `in`.mealpack.MealPack.ui.Login
 
 import `in`.mealpack.ui_login.R
 import `in`.mealpack.ui_login.ui.LoginViewModel
+import `in`.mealpack.user_domain.User
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,19 +17,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.google.firebase.auth.FirebaseUser
 
 @Composable
 fun LoginScreen(
-    currentUser: FirebaseUser?,
-    onSuccessUserAuth: () -> Unit
+    loginViewModel: LoginViewModel,
+    onSuccessUserAuth: (User) -> Unit
 ) {
     Surface(
         color = MaterialTheme.colors.background,
         modifier = Modifier.fillMaxSize()
     ) {
-        val loginViewModel: LoginViewModel = hiltViewModel()
 
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
@@ -58,8 +56,9 @@ fun LoginScreen(
                     .height(500.dp)
                     .align(Alignment.BottomCenter),
                 loginViewModel = loginViewModel,
-                currentUser = currentUser,
-                onSuccessUserAuth = onSuccessUserAuth
+                onSuccessUserAuth = {
+                    onSuccessUserAuth(it)
+                }
             )
         }
     }

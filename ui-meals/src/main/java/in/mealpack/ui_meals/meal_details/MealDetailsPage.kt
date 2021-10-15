@@ -2,7 +2,7 @@ package `in`.mealpack.ui_meals.meal_details
 
 import `in`.mealpack.components.DietTypeLabel
 import `in`.mealpack.components.MealCoveredIcon
-import `in`.mealpack.core.domain.DietType
+import `in`.mealpack.core.DietType
 import `in`.mealpack.meal_domain.MealIncludes
 import `in`.mealpack.meal_domain.MealTimings
 import `in`.mealpack.ui_meals.R

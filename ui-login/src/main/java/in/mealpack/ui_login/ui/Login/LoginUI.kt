@@ -1,8 +1,9 @@
 package `in`.mealpack.MealPack.ui.Login
 
-import `in`.mealpack.core.domain.LoadingState
+import `in`.mealpack.core.LoadingState
 import `in`.mealpack.ui_login.R
 import `in`.mealpack.ui_login.ui.LoginViewModel
+import `in`.mealpack.user_domain.User
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -18,6 +19,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -28,19 +30,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.zIndex
+import androidx.lifecycle.LifecycleOwner
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
-import com.google.firebase.auth.FirebaseUser
 
 @Composable
 fun LoginUi(
     modifier: Modifier = Modifier,
     loginViewModel: LoginViewModel,
-    currentUser: FirebaseUser?,
     progressIndicatorColor: Color = MaterialTheme.colors.primary,
     loadingText: String = "loading...",
     backgroundColor: Color = MaterialTheme.colors.surface,
-    onSuccessUserAuth: () -> Unit
+    onSuccessUserAuth: (User) -> Unit
 
 ) {
 
@@ -96,7 +97,8 @@ fun LoginUi(
             authResultLauncher.launch(googleSignInClient.signInIntent)
         }
         if (state == LoadingState.LOADED) {
-            onSuccessUserAuth()
+            val loginUser = loginViewModel.loggedInUser.observeAsState()
+            loginUser.value?.let(onSuccessUserAuth)
         }
     }
 }

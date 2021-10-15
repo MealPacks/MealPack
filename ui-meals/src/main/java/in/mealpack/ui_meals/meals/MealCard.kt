@@ -3,7 +3,7 @@ package `in`.mealpack.mealpack_testing_new_things.ui.components.meals
 import `in`.mealpack.components.DietTypeLabel
 import `in`.mealpack.components.ImageCardSingleTitle
 import `in`.mealpack.components.MealCoveredIcon
-import `in`.mealpack.core.domain.DietType
+import `in`.mealpack.core.DietType
 import `in`.mealpack.meal_domain.MealCardData
 import `in`.mealpack.meal_domain.MealsCovered
 import `in`.mealpack.ui_meals.R
@@ -32,7 +32,7 @@ fun MealCards(
     LazyColumn() {
         items(mealCards) { item ->
             MealCard(
-                mealId= item.mealId,
+                mealId = item.mealId,
                 imageUrl = "",
                 mealName = item.mealName,
                 mealDesc = item.mealDesc,
@@ -156,7 +156,7 @@ fun ShowMealCard() {
         imageUrl = "",
         dietType = DietType.Veg,
         mealsCovered = MealsCovered(false, true, true)
-    ){
+    ) {
 
     }
 

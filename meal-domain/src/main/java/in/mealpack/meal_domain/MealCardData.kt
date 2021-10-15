@@ -1,6 +1,6 @@
 package `in`.mealpack.meal_domain
 
-import `in`.mealpack.core.domain.DietType
+import `in`.mealpack.core.DietType
 
 
 data class MealCardData(

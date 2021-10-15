@@ -1,4 +1,4 @@
-package `in`.mealpack.core.domain
+package `in`.mealpack.core
 
 sealed class DietType() {
     object Veg : DietType()

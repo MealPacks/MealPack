@@ -1,14 +1,15 @@
 package `in`.mealpack.user_data
 
-import `in`.mealpack.core.domain.DtoDomainMapper
+import `in`.mealpack.core.DtoDomainMapper
 import `in`.mealpack.user_data.dto_models.AddressDto
 import `in`.mealpack.user_data.dto_models.LocationDto
 import `in`.mealpack.user_data.dto_models.UserDto
 import `in`.mealpack.user_domain.Address
 import `in`.mealpack.user_domain.Location
 import `in`.mealpack.user_domain.User
+import javax.inject.Inject
 
-class UserNetworkMapper : DtoDomainMapper<UserDto, User> {
+class UserNetworkMapper @Inject constructor() : DtoDomainMapper<UserDto, User> {
     override fun mapFromNetworkToDomain(networkDto: UserDto): User {
             return User(
                 userid = networkDto.userid,
@@ -16,44 +17,42 @@ class UserNetworkMapper : DtoDomainMapper<UserDto, User> {
                 email = networkDto.email,
                 phone = networkDto.phone,
                 address = Address(
-                    networkDto.addressDto?.line1,
-                    networkDto.addressDto?.line2,
-                    networkDto.addressDto?.line3,
-                    networkDto.addressDto?.city,
-                    networkDto.addressDto?.city,
-                    networkDto.addressDto?.state,
-                    networkDto.addressDto?.country
+                    networkDto.address.line1,
+                    networkDto.address.line2,
+                    networkDto.address.line3,
+                    networkDto.address.city,
+                    networkDto.address.state,
+                    networkDto.address.country,
+                    networkDto.address.pincode
                 ),
                 location = Location(
-                    networkDto.locationDto?.latitude,
-                    networkDto.locationDto?.longitude
+                    networkDto.location.latitude,
+                    networkDto.location.longitude
                 ),
                 photo = networkDto.photo
             )
     }
 
-    override fun mapFromDomainToNetwork(user: User): UserDto {
+    override fun mapFromDomainToNetwork(domain: User): UserDto {
         return UserDto(
-            userid = user.userid,
-            name = user.name,
-            email = user.email,
-            phone = user.phone,
-            addressDto = AddressDto(
-                user.address?.line1,
-                user.address?.line2,
-                user.address?.line3,
-                user.address?.city,
-                user.address?.city,
-                user.address?.state,
-                user.address?.country
+            userid = domain.userid,
+            name = domain.name,
+            email = domain.email,
+            phone = domain.phone,
+            address = AddressDto(
+                domain.address.line1,
+                domain.address.line2,
+                domain.address.line3,
+                domain.address.city,
+                domain.address.state,
+                domain.address.country,
+                domain.address.pincode
             ),
-            locationDto = LocationDto(
-                user.location?.latitude,
-                user.location?.longitude
+            location = LocationDto(
+                domain.location.latitude,
+                domain.location.longitude
             ),
-            password = null,
-            timestamp = null,
-            photo = user.photo
+            photo = domain.photo
         )
     }
 
