@@ -1,106 +1,108 @@
-//plugins {
-//    id ("com.android.application")
-//    id ("kotlin-android")
-//    id ("kotlin-kapt")
-//    id ("dagger.hilt.android.plugin")
-//    id ("com.google.gms.google-services")
-//}
-//
-//android {
-//    compileSdk = ConfigVersions.compileSdk
-//
-//    defaultConfig {
-//        applicationId = ConfigVersions.appId
-//        minSdk=(ConfigVersions.minSdk)
-//        targetSdk=(ConfigVersions.targetSdk)
-//        versionCode = ConfigVersions.versionCode
-//        versionName = ConfigVersions.versionName
-//
-//        testInstrumentationRunner = ConfigVersions.testRunner
-//        vectorDrawables.useSupportLibrary = true
-//
-//    }
-//
-//    buildTypes {
-//        getByName("release") {
-//            isMinifyEnabled = false
-//            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-//        }
-//    }
-//    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
-//    }
-//    kotlinOptions {
-//        jvmTarget = "1.8"
-//        useIR = true
-//    }
-//    buildFeatures {
-//        compose = true
-//    }
-//    composeOptions {
-//        kotlinCompilerExtensionVersion = Compose.composeVersion
-//    }
-//    packagingOptions {
-//        resources {
-//            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-//            exclude ("META-INF/gradle/incremental.annotation.processors")
-//        }
-//    }
-//}
-//
-//dependencies {
-//
-//    //Modules
-//    implementation(project(Modules.ui_login))
-//    implementation(project(Modules.ui_meals))
-//
-//    //Core
-//    implementation (AndroidX.coreKtx)
-//    implementation (AndroidX.appCompat)
-//    implementation (Google.material)
-//    implementation (AndroidX.lifecycle_runtime)
-//    implementation (AndroidX.lifecycleVmKtx)
-//
-//    //Compose
-//    implementation (Compose.ui)
-//    implementation (Compose.material)
-//    implementation (Compose.ui_tooling_preview)
-//    implementation (ComposeTest.ui_tooling)
-//    implementation (Compose.activity)
-//    implementation (Compose.compose_runtime_livedata)
-//    implementation (Compose.lifecycleViewmodelCompose)
-//    implementation (Compose.hiltNavigation)
-//    implementation (Compose.navigation)
-//
-//    //Coil
-//    implementation(Coil.coil)
-//
-//
-//    //Auth
-//    implementation (Firebase.firebaseBom)
-//    implementation (Firebase.firebaseAuth)
-//    implementation (Firebase.playServicesAuth)
-//    implementation (Firebase.firebaseFirestoreKtx)
-//
-//    //kotlin coroutines
-//    implementation(Kotlin.kotlinxCoroutinesCore)
-//    implementation(Kotlin.kotlinxCoroutinesAndroid)
-//    implementation(Kotlin.kotlinxCoroutinesPlayServices)
-//
-//    //Hilt
-//    implementation(Hilt.android)
-//    kapt(Hilt.compiler)
-//
-//    //Timber
-//    implementation(Timber.timber)
-//
-//    //Test
-//    testImplementation (Junit.junit4)
-//    androidTestImplementation (Junit.ext_junit)
-//    androidTestImplementation (ComposeTest.uiTestJunit4)
-//    debugImplementation (ComposeTest.ui_tooling)
-//}
+/*
+plugins {
+    id ("com.android.application")
+    id ("kotlin-android")
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin")
+    id ("com.google.gms.google-services")
+}
+
+android {
+    compileSdk = ConfigVersions.compileSdk
+
+    defaultConfig {
+        applicationId = ConfigVersions.appId
+        minSdk=(ConfigVersions.minSdk)
+        targetSdk=(ConfigVersions.targetSdk)
+        versionCode = ConfigVersions.versionCode
+        versionName = ConfigVersions.versionName
+
+        testInstrumentationRunner = ConfigVersions.testRunner
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+        useIR = true
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Compose.composeVersion
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            exclude ("META-INF/gradle/incremental.annotation.processors")
+        }
+    }
+}
+
+dependencies {
+
+    //Modules
+    implementation(project(Modules.ui_login))
+    implementation(project(Modules.ui_meals))
+
+    //Core
+    implementation (AndroidX.coreKtx)
+    implementation (AndroidX.appCompat)
+    implementation (Google.material)
+    implementation (AndroidX.lifecycle_runtime)
+    implementation (AndroidX.lifecycleVmKtx)
+
+    //Compose
+    implementation (Compose.ui)
+    implementation (Compose.material)
+    implementation (Compose.ui_tooling_preview)
+    implementation (ComposeTest.ui_tooling)
+    implementation (Compose.activity)
+    implementation (Compose.compose_runtime_livedata)
+    implementation (Compose.lifecycleViewmodelCompose)
+    implementation (Compose.hiltNavigation)
+    implementation (Compose.navigation)
+
+    //Coil
+    implementation(Coil.coil)
+
+
+    //Auth
+    implementation (Firebase.firebaseBom)
+    implementation (Firebase.firebaseAuth)
+    implementation (Firebase.playServicesAuth)
+    implementation (Firebase.firebaseFirestoreKtx)
+
+    //kotlin coroutines
+    implementation(Kotlin.kotlinxCoroutinesCore)
+    implementation(Kotlin.kotlinxCoroutinesAndroid)
+    implementation(Kotlin.kotlinxCoroutinesPlayServices)
+
+    //Hilt
+    implementation(Hilt.android)
+    kapt(Hilt.compiler)
+
+    //Timber
+    implementation(Timber.timber)
+
+    //Test
+    testImplementation (Junit.junit4)
+    androidTestImplementation (Junit.ext_junit)
+    androidTestImplementation (ComposeTest.uiTestJunit4)
+    debugImplementation (ComposeTest.ui_tooling)
+}
+*/
 
 plugins {
     id 'com.android.application'
@@ -160,6 +162,7 @@ dependencies {
     //Modules
     implementation(project(Modules.ui_login))
     implementation(project(Modules.ui_meals))
+    implementation(project(Modules.ui_drawer))
 
     //Core
     implementation (AndroidX.coreKtx)

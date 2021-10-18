@@ -11,7 +11,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun NormalTextField(
+fun StandardTextField(
     modifier: Modifier = Modifier,
     text: String,
     onValueChange: (String) -> Unit,
@@ -46,5 +46,5 @@ fun NormalTextField(
 @Preview(showBackground = true)
 @Composable
 fun NormalTextFieldPreview() {
-    NormalTextField(text = "Normal Text Field", onValueChange = {}, hint = "Normal Text Field")
+    StandardTextField(text = "Normal Text Field", onValueChange = {}, hint = "Normal Text Field")
 }

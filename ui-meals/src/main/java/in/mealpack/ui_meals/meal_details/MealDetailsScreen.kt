@@ -2,6 +2,7 @@ package `in`.mealpack.ui_meals.meal_details
 
 import `in`.mealpack.components.DietTypeLabel
 import `in`.mealpack.components.MealCoveredIcon
+import `in`.mealpack.components.StandardButton
 import `in`.mealpack.core.DietType
 import `in`.mealpack.meal_domain.MealIncludes
 import `in`.mealpack.meal_domain.MealTimings
@@ -53,82 +54,104 @@ fun MealDetailScreen(
     mealIncludes: MealIncludes
 ) {
 
-    Column(
-        modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.SpaceEvenly
+    Scaffold(
+        bottomBar = {
+            BottomAppBar(
+                elevation = 10.dp,
+                backgroundColor = MaterialTheme.colors.background
+            ) {
+                StandardButton(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .requiredHeight(70.dp)
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp, horizontal = 6.dp),
+                    buttonText = "Choose A Plan"
+                )
+            }
+        }
     ) {
         Box(
-            modifier = Modifier
-                .size(width = 500.dp, height = 300.dp)
-                .requiredWidth(500.dp)
-                .clip(RoundedCornerShape(bottomEnd = 600.dp, bottomStart = 600.dp))
+            modifier = Modifier.padding(bottom = it.calculateBottomPadding())
         ) {
-
-            Image(
-                painter = painterResource(id = R.drawable.meal_box),
-                contentDescription = "meal Box",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxWidth()
-            )
-
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            DietTypeLabel(
-                dietType = dietType,
-                contentDes = "Diet Type",
-                modifier = Modifier
-                    .clip(RoundedCornerShape(10.dp))
-                    .background(Color.LightGray)
-                    .padding(4.dp)
-            )
-
-            Text(text = mealName)
             Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                MealCoveredIcon(
-                    modifier = Modifier,
-                    isAvailable = true,
-                    coveredMealName = "Breakfast"
-                )
-                Spacer(modifier = Modifier.size(8.dp))
+                Box(
+                    modifier = Modifier
+                        .size(width = 500.dp, height = 300.dp)
+                        .requiredWidth(500.dp)
+                        .clip(RoundedCornerShape(bottomEnd = 600.dp, bottomStart = 600.dp))
+                ) {
 
-                MealCoveredIcon(
-                    modifier = Modifier,
-                    isAvailable = true,
-                    coveredMealName = "Lunch"
-                )
-                Spacer(modifier = Modifier.size(8.dp))
+                    Image(
+                        painter = painterResource(id = R.drawable.meal_box),
+                        contentDescription = "meal Box",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Box(modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                        .align(Alignment.TopCenter),) {
+                        IconButton(
+                            onClick = { /*TODO*/ }) {
+                            Icon(
+                                painter = painterResource(id = R.drawable.ic_back),
+                                contentDescription = "back"
+                            )
+                        }
+                    }
 
-                MealCoveredIcon(
-                    modifier = Modifier,
-                    isAvailable = true,
-                    coveredMealName = "Dinner"
-                )
+                }
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    DietTypeLabel(
+                        dietType = dietType,
+                        contentDes = "Diet Type",
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(10.dp))
+                            .background(Color.LightGray)
+                            .padding(4.dp)
+                    )
+
+                    Text(text = mealName)
+                    Column(
+                    ) {
+                        MealCoveredIcon(
+                            modifier = Modifier,
+                            isAvailable = true,
+                            coveredMealName = "Breakfast"
+                        )
+                        Spacer(modifier = Modifier.size(8.dp))
+
+                        MealCoveredIcon(
+                            modifier = Modifier,
+                            isAvailable = true,
+                            coveredMealName = "Lunch"
+                        )
+                        Spacer(modifier = Modifier.size(8.dp))
+
+                        MealCoveredIcon(
+                            modifier = Modifier,
+                            isAvailable = true,
+                            coveredMealName = "Dinner"
+                        )
+                    }
+
+                }
+                MealDetailInfo(mealTimings = mealTimings, mealIncludes = mealIncludes)
+
+
             }
-
         }
-        MealDetailInfo(mealTimings = mealTimings, mealIncludes = mealIncludes)
-        ExtendedFloatingActionButton(
-            onClick = { /*TODO*/ },
-            shape = RoundedCornerShape(20.dp),
-            contentColor = MaterialTheme.colors.onPrimary,
-            backgroundColor = MaterialTheme.colors.primary,
-            modifier = Modifier
-                .requiredHeight(70.dp)
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 16.dp),
-            text = {
-                Text(text = "Choose A Plan")
-            }
-        )
-
     }
+
 }
 
 @Composable
@@ -139,7 +162,6 @@ fun MealDetailInfo(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(350.dp)
             .verticalScroll(rememberScrollState())
     )
     {
@@ -203,6 +225,7 @@ fun MealDetailInfo(
             Text(text = "Meal Includes : ")
 
             Spacer(modifier = Modifier.size(32.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -235,6 +258,7 @@ fun MealDetailInfo(
                 Text(text = "Dinner : ")
                 Text(text = mealIncludes.dinnerIncludes, maxLines = 2)
             }
+
             Spacer(modifier = Modifier.size(16.dp))
             Divider()
             Spacer(modifier = Modifier.size(16.dp))
@@ -252,25 +276,43 @@ fun MealDetailInfo(
     }
 }
 
+@Composable
+fun MealIncludesItem(
+    mealIncludesString: String,
+    modifier: Modifier= Modifier,
+
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        Text(text = "Breakfast : ")
+        Text(text = mealIncludesString, maxLines = 2)
+    }
+    Spacer(modifier = Modifier.size(16.dp))
+    Divider()
+    Spacer(modifier = Modifier.size(16.dp))
+}
+
 
 @Preview(showBackground = true)
 @Composable
 fun ShowMealDetailPage() {
-        MealDetailScreen(
-            dietType = DietType.NonVeg,
-            mealName = "Heavy Meal Plan",
-            mealTimings = MealTimings(
-                "08:00 am --- 10:00 am",
-                "01:00 pm  ---  03:00 pm",
-                "08:00 pm  ---  10:00 pm"
-            ),
-            MealIncludes(
-                "Roti Sabji   Poha   Sooji   Puri",
-                "Roti Sabji  Rice,Dal  Chole",
-                "Roti Sabji   Rice,Dal   Rice,Dal",
-                "Puri   Paneer   Kheer"
-            )
-
-
+    MealDetailScreen(
+        dietType = DietType.NonVeg,
+        mealName = "Heavy Meal Plan",
+        mealTimings = MealTimings(
+            "08:00 am --- 10:00 am",
+            "01:00 pm  ---  03:00 pm",
+            "08:00 pm  ---  10:00 pm"
+        ),
+        MealIncludes(
+            "Roti Sabji   Poha   Sooji   Puri",
+            "Roti Sabji  Rice,Dal  Chole",
+            "Roti Sabji   Rice,Dal   Rice,Dal",
+            "Puri   Paneer   Kheer"
         )
+
+
+    )
 }

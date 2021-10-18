@@ -10,7 +10,8 @@ class MealsDtoMapper @Inject constructor() : DtoDomainMapper<MealsDto, Meals> {
         return Meals(
             mealId = networkDto.mealId,
             mealName = networkDto.mealName,
-            photo = networkDto.photo,
+            category = networkDto.category,
+            mealPhoto = networkDto.mealPhoto,
             dietType = networkDto.dietType,
             plan = networkDto.plan,
             desc = networkDto.desc,
@@ -23,7 +24,9 @@ class MealsDtoMapper @Inject constructor() : DtoDomainMapper<MealsDto, Meals> {
                 networkDto.mealPrice.plan5,
                 networkDto.mealPrice.plan6,
                 networkDto.mealPrice.plan7,
-            )
+            ),
+            deliveryTimings = networkDto.deliveryTimings,
+            generallyIncludes = networkDto.generallyIncludes
         )
     }
 
@@ -32,7 +35,8 @@ class MealsDtoMapper @Inject constructor() : DtoDomainMapper<MealsDto, Meals> {
         return MealsDto(
             mealId = domain.mealId,
             mealName = domain.mealName,
-            photo = domain.photo,
+            category = domain.category,
+            mealPhoto = domain.mealPhoto,
             dietType = domain.dietType,
             plan = domain.plan,
             desc = domain.desc,
@@ -45,7 +49,10 @@ class MealsDtoMapper @Inject constructor() : DtoDomainMapper<MealsDto, Meals> {
                 domain.mealPrice.plan5,
                 domain.mealPrice.plan6,
                 domain.mealPrice.plan7,
-            )
+            ),
+            deliveryTimings = domain.deliveryTimings,
+            generallyIncludes = domain.generallyIncludes
+
         )
     }
 }

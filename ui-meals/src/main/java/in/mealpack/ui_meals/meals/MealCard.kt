@@ -1,4 +1,4 @@
-package `in`.mealpack.mealpack_testing_new_things.ui.components.meals
+package `in`.mealpack.ui_meals.meals
 
 import `in`.mealpack.components.DietTypeLabel
 import `in`.mealpack.components.ImageCardSingleTitle
@@ -29,7 +29,7 @@ fun MealCards(
     mealCards: List<MealCardData>,
     onMealCardClick: (String) -> Unit
 ) {
-    LazyColumn() {
+    LazyColumn(modifier = Modifier.padding(horizontal = 16.dp),verticalArrangement = Arrangement.spacedBy(24.dp)) {
         items(mealCards) { item ->
             MealCard(
                 mealId = item.mealId,
@@ -56,18 +56,19 @@ fun MealCard(
     mealsCovered: MealsCovered,
     onMealCardClick: (String) -> Unit
 ) {
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(top = 16.dp, start = 8.dp, end = 8.dp)
+//            .padding(top = 1.dp, start = 8.dp, end = 8.dp)
             .clip(RoundedCornerShape(20.dp))
             .clickable {
                 onMealCardClick(mealId)
             },
-        elevation = 10.dp,
+        elevation = 20.dp,
     ) {
         Column {
-            Box() {
+            Box{
                 ImageCardSingleTitle(
                     painter = painterResource(id = R.drawable.meals),
                     title = mealName,
@@ -89,26 +90,26 @@ fun MealCard(
                         .padding(4.dp)
                 )
             }
-            Spacer(modifier = Modifier.size(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Meal includes Dishes: ",
                 modifier = Modifier.padding(start = 16.dp),
                 color = MaterialTheme.colors.onBackground
             )
-            Spacer(modifier = Modifier.size(8.dp))
+            Spacer(modifier = Modifier.height(8.dp))
             Text(
                 text = "$mealDesc",
                 modifier = Modifier.padding(start = 16.dp),
                 color = MaterialTheme.colors.onBackground
             )
-            Spacer(modifier = Modifier.size(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Meal Covered : ",
                 modifier = Modifier.padding(start = 16.dp),
                 color = MaterialTheme.colors.onBackground
             )
-            Spacer(modifier = Modifier.size(8.dp))
-            Row(horizontalArrangement = Arrangement.SpaceAround) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Row(Modifier.padding(start = 16.dp),horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                 MealCoveredIcon(
                     isAvailable = mealsCovered.breakfast,
                     coveredMealName = "Breakfast",
@@ -125,8 +126,8 @@ fun MealCard(
                     modifier = Modifier
                 )
             }
-            Spacer(modifier = Modifier.size(16.dp))
-            Button(
+            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedButton(
                 onClick = { /*TODO*/ },
                 colors = ButtonDefaults.buttonColors(
                     contentColor = MaterialTheme.colors.onPrimary,
@@ -134,8 +135,12 @@ fun MealCard(
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .size(50.dp),
-                elevation = ButtonDefaults.elevation(10.dp)
+                    .height(50.dp),
+                elevation = ButtonDefaults.elevation(
+                    defaultElevation = 16.dp,
+                    pressedElevation = 8.dp,
+                    disabledElevation = 0.dp
+                )
             ) {
                 Text(
                     text = "Choose A Plan",

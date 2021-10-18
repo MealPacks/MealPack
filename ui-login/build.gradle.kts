@@ -19,6 +19,8 @@ dependencies{
     "implementation"(Firebase.firebaseAuth)
     "implementation"(Firebase.playServicesAuth)
     "implementation"(Firebase.firebaseFirestoreKtx)
+
+    //LiveData with compose
     "implementation"(AndroidX.runtimeLivedata)
 
 

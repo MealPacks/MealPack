@@ -14,11 +14,16 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/components" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/drawer-data" />
             <option value="$PROJECT_DIR$/meal-data" />
             <option value="$PROJECT_DIR$/meal-domain" />
             <option value="$PROJECT_DIR$/navigation" />
+            <option value="$PROJECT_DIR$/order-data" />
+            <option value="$PROJECT_DIR$/ui-cart" />
+            <option value="$PROJECT_DIR$/ui-drawer" />
             <option value="$PROJECT_DIR$/ui-login" />
             <option value="$PROJECT_DIR$/ui-meals" />
+            <option value="$PROJECT_DIR$/ui-myPlan" />
             <option value="$PROJECT_DIR$/user-data" />
             <option value="$PROJECT_DIR$/user-domain" />
           </set>

@@ -21,7 +21,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun LoginScreen(
     loginViewModel: LoginViewModel,
-    onSuccessUserAuth: (User) -> Unit
+    onSuccessUserAuth: (User) -> Unit,
+    onSkipClicked : ()-> Unit
 ) {
     Surface(
         color = MaterialTheme.colors.background,
@@ -36,7 +37,9 @@ fun LoginScreen(
                 contentScale = ContentScale.Crop
             )
             Button(
-                onClick = { },
+                onClick = {
+                          onSkipClicked()
+                },
                 modifier = Modifier
                     .padding(24.dp)
                     .align(Alignment.TopEnd),
