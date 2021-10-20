@@ -1,6 +1,7 @@
 package `in`.mealpack.components
 
 import androidx.annotation.DrawableRes
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,15 +16,16 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun StandardButton(
     buttonText: String,
-    buttonTextColor:Color = MaterialTheme.colors.onPrimary,
+    buttonTextColor: Color = MaterialTheme.colors.onPrimary,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     colors: ButtonColors = ButtonDefaults.buttonColors(),
     @DrawableRes leadingIcon: Int? = null,
-    leadingIconColor:Color= MaterialTheme.colors.onPrimary,
+    leadingIconColor: Color = MaterialTheme.colors.onPrimary,
     @DrawableRes trailingIcon: Int? = null,
-trailingIconColor:Color= MaterialTheme.colors.onPrimary,
+    trailingIconColor: Color = MaterialTheme.colors.onPrimary,
+    border: BorderStroke? = ButtonDefaults.outlinedBorder
 
 ) {
     OutlinedButton(
@@ -35,7 +37,8 @@ trailingIconColor:Color= MaterialTheme.colors.onPrimary,
         ),
         shape = RoundedCornerShape(20.dp),
         enabled = enabled,
-        colors = colors
+        colors = colors,
+        border = border
     ) {
         leadingIcon?.let {
             Icon(
@@ -45,7 +48,8 @@ trailingIconColor:Color= MaterialTheme.colors.onPrimary,
             )
             Spacer(modifier = Modifier.width(10.dp))
         }
-        Text(text = buttonText,
+        Text(
+            text = buttonText,
             color = buttonTextColor
         )
         trailingIcon?.let {

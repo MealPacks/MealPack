@@ -21,7 +21,7 @@ dependencies{
     "implementation"(Firebase.firebaseFirestoreKtx)
 
     //LiveData with compose
-    "implementation"(AndroidX.runtimeLivedata)
+    "implementation"(AndroidX.runtimeComposeLivedata)
 
 
 

@@ -10,17 +10,15 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-//@InstallIn(SingletonComponent::class)
-//@Module
-//object MealsModule {
-//
-//    @Singleton
-//    @Provides
-//    fun providesMealsRepository(
-//        firestoreDb: FirebaseFirestore,
-//        mealNetworkMapper: MealsDtoMapper
-//    ): MealsRepository {
-//        return MealsRepositoryImpl(firestoreDb,mealNetworkMapper)
-//    }
-//
-//}
+@InstallIn(SingletonComponent::class)
+@Module
+object MealsModule {
+    @Singleton
+    @Provides
+    fun providesMealsRepository(
+        firestoreDb: FirebaseFirestore,
+        mealNetworkMapper: MealsDtoMapper
+    ): MealsRepository {
+        return MealsRepositoryImpl(firestoreDb,mealNetworkMapper)
+    }
+}

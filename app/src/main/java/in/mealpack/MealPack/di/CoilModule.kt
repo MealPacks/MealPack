@@ -1,5 +1,6 @@
 package `in`.mealpack.MealPack.di
 
+import `in`.mealpack.MealPack.R
 import android.app.Application
 import coil.ImageLoader
 import dagger.Module
@@ -21,7 +22,7 @@ object CoilModule {
     fun provideImageLoader(app: Application): ImageLoader{
         return ImageLoader.Builder(app)
 //            .error(R.drawable.error_image)
-//            .placeholder(R.drawable.white_background)
+            .placeholder(R.drawable.ic_image_placeholder)
             .availableMemoryPercentage(0.25) // Don't know what is recommended?
             .crossfade(true)
             .build()

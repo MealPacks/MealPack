@@ -1,6 +1,6 @@
 package `in`.mealpack.meal_domain.model
 
 data class PlanVariance(
-    val heavyMealPlan:Boolean,
-    val lightMealPlan:Boolean
+    val heavyMealPlan: Boolean = false,
+    val lightMealPlan: Boolean = false
 )

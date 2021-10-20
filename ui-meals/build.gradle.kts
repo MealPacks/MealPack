@@ -5,7 +5,14 @@ apply{
 dependencies{
     "implementation"(project(Modules.components))
     "implementation"(project(Modules.core))
-    "implementation"(project(Modules.meal_data))
+    "api"(project(Modules.meal_data))
+
+    //Coil
+    "implementation"(Coil.coil)
+
+    //LiveData with compose
+    "implementation"(AndroidX.runtimeComposeLivedata)
+
 
     //FireStore
     "implementation" (platform(Firebase.firebaseBom))

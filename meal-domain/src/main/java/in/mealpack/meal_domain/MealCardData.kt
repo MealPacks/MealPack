@@ -9,5 +9,5 @@ data class MealCardData(
     var mealName: String,
     var mealDesc: String,
     val dietType: DietType,
-    val mealsCovered: MealsCovered
+    val mealCovered: MealCovered
 )

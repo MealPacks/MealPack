@@ -3,13 +3,15 @@ package `in`.mealpack.MealPack.ui
 import `in`.mealpack.MealPack.ui.Login.LoginScreen
 import `in`.mealpack.MealPack.ui.navigation.createRouter
 import `in`.mealpack.ui_login.ui.LoginViewModel
+import `in`.mealpack.ui_meals.choose_plan.ChoosePlanPopUp
 import `in`.mealpack.ui_meals.meal_details.MealDetailScreen
-import `in`.mealpack.ui_meals.meal_details.ShowMealDetailScreen
+import `in`.mealpack.ui_meals.meals.MealsViewModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Button
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,20 +26,22 @@ import androidx.navigation.compose.navArgument
 import coil.ImageLoader
 import com.google.firebase.auth.FirebaseAuth
 
+@ExperimentalMaterialApi
 @Composable
 fun SetUpNavGraph(navController: NavHostController, imageLoader: ImageLoader) {
+    val mealsViewModel: MealsViewModel = hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = Screen.SplashScreen.route,
         builder = {
             SplashScreenBuilder(navController)
             LoginBuilder(navController, imageLoader)
-            MainScreenBuilder(navController, imageLoader)
-            MealDetailScreenBuilder(navController,imageLoader)
+            MainScreenBuilder(mealsViewModel, navController, imageLoader)
+            MealDetailScreenBuilder(mealsViewModel, navController, imageLoader)
             ProfileScreenBuilder(navController, imageLoader)
             GiveFeedBackBuilder(navController, imageLoader)
             HelpAndSupportBuilder(navController, imageLoader)
-            OrderScreenBuilder(navController,imageLoader)
+            OrderScreenBuilder(navController, imageLoader)
         }
     )
 }
@@ -48,10 +52,10 @@ fun NavGraphBuilder.OrderScreenBuilder(navController: NavHostController, imageLo
 }
 
 fun NavGraphBuilder.MealDetailScreenBuilder(
+    mealsViewModel: MealsViewModel,
     navController: NavHostController,
     imageLoader: ImageLoader
-)
-{
+) {
     composable(route = Screen.MealDetailScreen.route,
         arguments = listOf(
             navArgument(MEAL_DETAIL_MEAL_ID_KEY) {
@@ -62,17 +66,13 @@ fun NavGraphBuilder.MealDetailScreenBuilder(
             }
         )
     ) {
-       ShowMealDetailScreen()
-        /*
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Red)
-        ) {
-            Text(text = it.arguments?.getString(MEAL_DETAIL_MEAL_ID_KEY, "0").toString())
-            Text(text = it.arguments?.getInt(MEAL_DETAIL_CART_ID_KEY, 0).toString())
-        }
-        */
+        MealDetailScreen(
+            mealsViewModel = mealsViewModel,
+            imageLoader = imageLoader,
+            backClicked = {
+                navController.popBackStack()
+            }
+        )
     }
 }
 
@@ -149,7 +149,9 @@ fun NavGraphBuilder.ProfileScreenBuilder(
 }
 
 
+@ExperimentalMaterialApi
 fun NavGraphBuilder.MainScreenBuilder(
+    mealsViewModel: MealsViewModel,
     navController: NavHostController,
     imageLoader: ImageLoader
 ) {
@@ -163,6 +165,8 @@ fun NavGraphBuilder.MainScreenBuilder(
 
         MainScreen(
             userId = it.arguments?.getString(MAIN_SCREEN_USER_ID_KEY) ?: "0",
+            mealsViewModel,
+            imageLoader,
             createRouter { route ->
                 navController.navigate(route)
             }
