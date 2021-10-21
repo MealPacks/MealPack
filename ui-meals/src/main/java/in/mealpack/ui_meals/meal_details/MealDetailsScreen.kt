@@ -125,7 +125,8 @@ fun MealDetailScreen(
                 else
                     DietType.NonVeg,
                 mealName = mealsDetail.mealName,
-                deliveryTimings = DeliveryTimings(),
+                mealCovered = mealsDetail.mealCovered,
+                deliveryTimings = mealsDetail.deliveryTimings,
                 generallyIncludes = mealsDetail.generallyIncludes,
                 extraDesc = mealsDetail.extraDesc,
                 mealPhoto = mealsDetail.mealPhoto,
@@ -150,6 +151,7 @@ fun MealDetailScreen(
 fun MealDetailScreenInfo(
     dietType: DietType,
     mealName: String,
+    mealCovered: List<Boolean>,
     deliveryTimings: DeliveryTimings,
     generallyIncludes: GenerallyIncludes,
     extraDesc: String,
@@ -176,7 +178,7 @@ fun MealDetailScreenInfo(
                 imageLoader = imageLoader,
                 builder = {
                     placeholder(R.drawable.ic_image_placeholder)
-                    crossfade(1000)
+                    crossfade(250)
                 }
             )
 
@@ -232,21 +234,21 @@ fun MealDetailScreenInfo(
             ) {
                 MealCoveredIcon(
                     modifier = Modifier,
-                    isAvailable = true,
+                    isAvailable = mealCovered[0],
                     coveredMealName = "Breakfast"
                 )
                 Spacer(modifier = Modifier.size(8.dp))
 
                 MealCoveredIcon(
                     modifier = Modifier,
-                    isAvailable = true,
+                    isAvailable = mealCovered[1],
                     coveredMealName = "Lunch"
                 )
                 Spacer(modifier = Modifier.size(8.dp))
 
                 MealCoveredIcon(
                     modifier = Modifier,
-                    isAvailable = true,
+                    isAvailable = mealCovered[2],
                     coveredMealName = "Dinner"
                 )
             }

@@ -96,7 +96,7 @@ fun MealCard(
                     imageLoader = imageLoader,
                     builder = {
                         placeholder(R.drawable.ic_image_placeholder)
-                        crossfade(1000)
+                        crossfade(250)
                     }
                 )
                 ImageCardSingleTitle(

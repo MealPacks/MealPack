@@ -3,7 +3,6 @@ package `in`.mealpack.MealPack.ui
 import `in`.mealpack.MealPack.ui.Login.LoginScreen
 import `in`.mealpack.MealPack.ui.navigation.createRouter
 import `in`.mealpack.ui_login.ui.LoginViewModel
-import `in`.mealpack.ui_meals.choose_plan.ChoosePlanPopUp
 import `in`.mealpack.ui_meals.meal_details.MealDetailScreen
 import `in`.mealpack.ui_meals.meals.MealsViewModel
 import androidx.compose.foundation.background

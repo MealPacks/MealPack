@@ -1,15 +1,16 @@
 package `in`.mealpack.ui_meals.meals
 
 import `in`.mealpack.ui_meals.choose_plan.ChoosePlanPopUp
+import `in`.mealpack.util.MealsUiState
 import android.app.Application
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,11 +25,13 @@ fun MealsPlanScreen(
     imageLoader: ImageLoader,
     onMealCardClicked: (String) -> Unit,
     chooseAPlanClick: (String) -> Unit,
-    closeChoosePopUpPlanClicked:()->Unit
+    closeChoosePopUpPlanClicked: () -> Unit
 
 ) {
-    val mealsList by mealsViewModel.allMeals.collectAsState()
+
     val uiState by mealsViewModel.uiState.collectAsState()
+
+    val currentMealList by mealsViewModel.currentMealList.collectAsState()
 
     val showChooseAPlan by mealsViewModel.showChoosePlanPopUp.collectAsState()
 
@@ -45,58 +48,55 @@ fun MealsPlanScreen(
                 elevation = 20.dp
             ) {
 
-                val filterItems = mealsList.filter {
-                    it.category != ""
-                }.map {
-                    it.category.trim()
-                }.distinct()
-
-                val neFilterItems = mutableListOf<String>()
-                neFilterItems.add("All")
-                for (item in filterItems) {
-                    neFilterItems.add(item)
+                val newFilterItems = mutableListOf<String>()
+                newFilterItems.add("All")
+                for (item in mealsViewModel.getFilers()) {
+                    newFilterItems.add(item)
                 }
-                // TODO: 10/20/2021 new filter items check
-                val newFilterItems = neFilterItems.distinct()
+
 
                 LazyRow(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    items(neFilterItems) { filterItem ->
+                    items(newFilterItems) { filterItem ->
                         MealsFilterButton(
                             filterText = filterItem,
                             enabled = filterItem != currentItemSelected
                         ) {
                             currentItemSelected = it
+                            mealsViewModel.filterMeals(it)
 
                         }
                     }
                 }
             }
         }
-    ) {innerPadding->
+    ) { innerPadding ->
         Box(modifier = Modifier.padding(top = innerPadding.calculateTopPadding() + 6.dp)) {
 
-            Box(modifier = Modifier.fillMaxSize()){
-                MealCards(
-                    imageLoader,
-                    mealsViewModel = mealsViewModel,
-                    mealCards = mealsList,
-                    onMealCardClick =
-                    {
-                        onMealCardClicked(it)
-                    },
-                    chooseAPlanClick = {
-                        chooseAPlanClick(it)
-                    }
-                )
-                if (showChooseAPlan){
-                        ChoosePlanPopUp(currentSelectedMeal){
+            Box(modifier = Modifier.fillMaxSize()) {
+                    MealCards(
+                        imageLoader = imageLoader,
+                        mealsViewModel = mealsViewModel,
+                        mealCards = currentMealList,
+                        onMealCardClick =
+                        {
+                            onMealCardClicked(it)
+                        },
+                        chooseAPlanClick = {
+                            chooseAPlanClick(it)
+                        }
+                    )
+                    if (showChooseAPlan) {
+                        ChoosePlanPopUp(currentSelectedMeal) {
                             closeChoosePopUpPlanClicked()
                         }
 
-                }
+                    }
+
+
+
             }
 
 
@@ -114,6 +114,5 @@ fun ShowMealScreen() {
     val mealsViewModel: MealsViewModel by hiltViewModel()
     MealsPlanScreen(
         mealsViewModel = mealsViewModel,
-        imageLoader = ImageLoader.Builder(app).build()
-     ,{},{},{})
+        imageLoader = ImageLoader.Builder(app).build(), {}, {}, {})
 }

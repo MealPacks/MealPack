@@ -15,20 +15,22 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class MealsRepositoryImpl @Inject constructor(
-    val firestoreDb: FirebaseFirestore,
-    val mealsDtoMapper: MealsDtoMapper
+    private val firestoreDb: FirebaseFirestore,
+    private val mealsDtoMapper: MealsDtoMapper
 ) : MealsRepository {
 
-    override suspend fun getAllMeals(): Flow<List<Meals>> = callbackFlow {
+    override fun getAllMeals(): Flow<List<Meals>> = callbackFlow {
 
         var mealsCollection: CollectionReference? = null
+        lateinit var mealsList: List<Meals>
+
         try {
             mealsCollection = firestoreDb.collection("meals-dishes")
+            Log.d("Mealfirestoreacess","$mealsCollection")
         } catch (e: Throwable) {
             close(e)
         }
 
-        lateinit var mealsList: List<Meals>
         val subscription = mealsCollection?.addSnapshotListener { snapshot, exception ->
 
             if (snapshot == null && exception != null) {
@@ -52,7 +54,7 @@ class MealsRepositoryImpl @Inject constructor(
         awaitClose { subscription?.remove() }
     }
 
-    override suspend fun getMealsDetail(id: String): Flow<Meals> = callbackFlow {
+    override fun getMealsDetail(id: String): Flow<Meals> = callbackFlow {
         getAllMeals().collect { it ->
             val meal = it.find {
                 id == it.mealId
@@ -63,15 +65,17 @@ class MealsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun filterMeals(filter: String): Flow<List<Meals>> = callbackFlow {
+    override fun filterMeals(filter: String): Flow<List<Meals>> = callbackFlow {
         getAllMeals().collect { it ->
-            val filteredMeals = it.filter {
-                filter.lowercase().trim() == it.mealId.lowercase().trim()
-            }
-            if (filteredMeals.isEmpty()){
+            if (filter.lowercase() == "all"){
                 trySend(it)
             }
-            trySend(filteredMeals)
+            val filteredMeals = it.filter {
+                filter.lowercase().trim() == it.category.lowercase().trim()
+            }
+            if (filteredMeals.isNotEmpty()){
+                trySend(filteredMeals)
+            }
         }
     }
 

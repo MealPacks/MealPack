@@ -154,7 +154,9 @@ fun DrawerItem(
         modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .clickable { }
+            .clickable {
+                onDrawerItemClicked
+            }
             .background(MaterialTheme.colors.onPrimary.copy(0.3f))
             .padding(8.dp)
     ) {

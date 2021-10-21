@@ -23,15 +23,18 @@ fun MealsFilterButton(
         buttonTextColor = if (!enabled)
             MaterialTheme.colors.primary
         else
-            MaterialTheme.colors.onPrimary ,
-        onClick = { onclick(filterText) },
+            MaterialTheme.colors.onPrimary,
+        onClick = {
+            onclick(filterText)
+        },
         enabled = enabled,
         border =
         if (!enabled)
             BorderStroke(2.dp, MaterialTheme.colors.primary)
         else
-            ButtonDefaults.outlinedBorder
-    )
+            ButtonDefaults.outlinedBorder,
+
+        )
 }
 
 @Composable

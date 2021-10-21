@@ -5,11 +5,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface MealsRepository {
 
-    suspend fun getAllMeals(): Flow<List<Meals>>
+    fun getAllMeals(): Flow<List<Meals>>
 
-    suspend fun getMealsDetail(id: String): Flow<Meals>
+    fun getMealsDetail(id: String): Flow<Meals>
 
-     suspend fun filterMeals(filter: String): Flow<List<Meals>>
+    fun filterMeals(filter: String): Flow<List<Meals>>
 
 
 }

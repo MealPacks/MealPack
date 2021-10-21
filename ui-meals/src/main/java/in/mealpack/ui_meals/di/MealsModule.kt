@@ -8,11 +8,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
 object MealsModule {
+    @ExperimentalCoroutinesApi
     @Singleton
     @Provides
     fun providesMealsRepository(
