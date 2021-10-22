@@ -10,3 +10,10 @@ fun NavHostController.currentRoute(): String? {
     val navBackStackEntry by this.currentBackStackEntryAsState()
     return navBackStackEntry?.destination?.route
 }
+
+
+fun NavHostController.getCurrentRoute(): String? {
+    val navBackStackEntry = this.currentBackStackEntry
+    return navBackStackEntry?.destination?.route
+}
+

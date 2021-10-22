@@ -7,9 +7,10 @@ import `in`.mealpack.MealPack.ui.navigation.Router
 import `in`.mealpack.MealPack.ui.navigation.currentRoute
 import `in`.mealpack.MealPack.ui.theme.MealPackTheme
 import `in`.mealpack.components.StandardButton
-import `in`.mealpack.ui_drawer.SideDrawer
+import `in`.mealpack.ui_drawer.ui.SideDrawerScreen
 import `in`.mealpack.ui_meals.meals.MealsPlanScreen
 import `in`.mealpack.ui_meals.meals.MealsViewModel
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -32,10 +33,9 @@ import coil.ImageLoader
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-@ExperimentalMaterialApi
+
 @Composable
 fun MainScreen(
-    userId: String,
     mealsViewModel: MealsViewModel,
     imageLoader: ImageLoader,
     externalRouter: Router
@@ -45,7 +45,7 @@ fun MainScreen(
 
     val bottomNavTabs = BottomNavItem.list
 
-    val navController = rememberNavController()
+    val bottomNavController = rememberNavController()
 
     MealPackTheme {
         Scaffold(
@@ -70,7 +70,8 @@ fun MainScreen(
                         elevation = 10.dp
                     ) {
                         bottomNavTabs.forEach { bottomNavItem ->
-                            val currentRoute = navController.currentRoute()
+
+                            val currentRoute = bottomNavController.currentRoute()
                             val selected = currentRoute == bottomNavItem.route
                                     ||
                                     bottomNavItem.routesIncluded.contains(currentRoute)
@@ -93,17 +94,21 @@ fun MainScreen(
                                 selected = selected,
                                 onClick = {
                                     if (currentRoute != bottomNavItem.route) {
-                                        navController.navigate(bottomNavItem.route)
+                                        bottomNavController.navigate(bottomNavItem.route) {
+                                            popUpTo(currentRoute!!) {
+                                                inclusive
+                                            }
+                                        }
                                     }
                                 },
                                 label = {
                                     Text(text = if (selected) bottomNavItem.title else "")
                                 },
                                 icon = {
-                                    // TODO: fix contentDescription
+
                                     Icon(
                                         painter = painterResource(id = bottomNavItem.icon),
-                                        contentDescription = null,
+                                        contentDescription = bottomNavItem.title,
                                         tint = if (bottomNavItem == BottomNavItem.MealsPlan)
                                             Color.Unspecified
                                         else
@@ -164,7 +169,7 @@ fun MainScreen(
         ) { innerPadding ->
             Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())) {
                 NavHost(
-                    navController = navController,
+                    navController = bottomNavController,
                     startDestination = BottomNavItem.MealsPlan.route
                 ) {
 
@@ -189,8 +194,9 @@ fun MainScreen(
                         )
                     }
                     composable(route = BottomNavItem.Menu.route) {
-                        SideDrawer(
+                        SideDrawerScreen(
                             onProfileClick = {
+                                Log.d("Profile", "Profile Clicked")
                                 externalRouter.navigateTo(
                                     Screen.ProfileScreen.route
                                 )

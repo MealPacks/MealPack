@@ -1,9 +1,12 @@
 package `in`.mealpack.ui_meals.meals
 
+import `in`.mealpack.core.states.FilterState
 import `in`.mealpack.meal_data.MealsRepository
 import `in`.mealpack.meal_domain.model.Meals
 import `in`.mealpack.util.MealsUiState
 import android.util.Log
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,14 +24,16 @@ class MealsViewModel @Inject constructor(
     private val _showChoosePlanPopUp: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val showChoosePlanPopUp: StateFlow<Boolean> = _showChoosePlanPopUp
 
-    private val _allMeals: MutableStateFlow<List<Meals>> = MutableStateFlow(listOf())
-    val allMeals: StateFlow<List<Meals>> = _allMeals
+    private val _allMeals: MutableStateFlow<List<Meals>> = MutableStateFlow(emptyList())
 
     private val _currentMealList: MutableStateFlow<List<Meals>> = _allMeals
     val currentMealList: StateFlow<List<Meals>> = _allMeals
 
     private val _uiState: MutableStateFlow<MealsUiState> = MutableStateFlow(MealsUiState.Empty)
     val uiState: StateFlow<MealsUiState> = _uiState
+
+    private val _filteredList = mutableStateOf(FilterState())
+    val filteredList: State<FilterState> = _filteredList
 
 
     // TODO: 10/19/2021 create a mealState for integration with Meals instead of separate ui state
@@ -37,6 +42,7 @@ class MealsViewModel @Inject constructor(
 
     init {
         getAllMeals()
+        getFilters()
     }
 
 
@@ -54,7 +60,6 @@ class MealsViewModel @Inject constructor(
     }
 
     fun getMealsDetails(id: String) = viewModelScope.launch {
-
         try {
             _uiState.emit(MealsUiState.Loading)
             mealsRepository.getMealsDetail(id).collect {
@@ -73,7 +78,7 @@ class MealsViewModel @Inject constructor(
 
             mealsRepository.filterMeals(filter).collect {
                 _currentMealList.value = it
-                Log.d("filtered items","$it")
+                Log.d("filtered items", "$it")
             }
         } catch (e: Exception) {
             _uiState.emit(MealsUiState.Error("$e"))
@@ -84,14 +89,45 @@ class MealsViewModel @Inject constructor(
         _showChoosePlanPopUp.value = state
     }
 
-    fun getFilers(): List<String> {
-        return _allMeals.value.filter {
-            it.category != ""
-        }.map {
-            it.category.trim()
-        }.distinct()
+    private fun getFilters() = viewModelScope.launch {
+
+        mealsRepository.getAllMeals().collect {
+
+            val listOfFilters =
+                it.filter {
+                    it.category != ""
+                }.map {
+                    it.category.trim()
+                }.distinct()
+
+
+            val filters = mutableListOf<String>()
+
+            filters.add("All")
+
+            for (item in listOfFilters) {
+                Log.d("Filteritem", item)
+                filters.add(item)
+            }
+
+            Log.d("Filteritem", "$filters")
+            Log.d("filtered items", "${_allMeals.value}")
+
+            _filteredList.value = _filteredList.value.copy(
+                filters = filters
+            )
+
+
+        }
+
     }
 
+    fun changeCurrentFilterSelected(selectedFilter: String) = viewModelScope.launch {
+        _filteredList.value = _filteredList.value.copy(
+            selectedFilter = selectedFilter
+        )
+        Log.d("selectedFilter","${_filteredList.value.selectedFilter},${_filteredList.value.filters}")
+    }
 
 }
 

@@ -33,24 +33,24 @@ fun SetUpNavGraph(navController: NavHostController, imageLoader: ImageLoader) {
         navController = navController,
         startDestination = Screen.SplashScreen.route,
         builder = {
-            SplashScreenBuilder(navController)
-            LoginBuilder(navController, imageLoader)
-            MainScreenBuilder(mealsViewModel, navController, imageLoader)
-            MealDetailScreenBuilder(mealsViewModel, navController, imageLoader)
-            ProfileScreenBuilder(navController, imageLoader)
-            GiveFeedBackBuilder(navController, imageLoader)
-            HelpAndSupportBuilder(navController, imageLoader)
-            OrderScreenBuilder(navController, imageLoader)
+            splashScreenBuilder(navController)
+            loginBuilder(navController, imageLoader)
+            mainScreenBuilder(mealsViewModel, navController, imageLoader)
+            mealDetailScreenBuilder(mealsViewModel, navController, imageLoader)
+            profileScreenBuilder(navController, imageLoader)
+            giveFeedBackBuilder(navController, imageLoader)
+            helpAndSupportBuilder(navController, imageLoader)
+            orderScreenBuilder(navController, imageLoader)
         }
     )
 }
 
-fun NavGraphBuilder.OrderScreenBuilder(navController: NavHostController, imageLoader: ImageLoader) {
+fun NavGraphBuilder.orderScreenBuilder(navController: NavHostController, imageLoader: ImageLoader) {
 //    composable(route = Screen.OrderScreen.route)
 //    composable()
 }
 
-fun NavGraphBuilder.MealDetailScreenBuilder(
+fun NavGraphBuilder.mealDetailScreenBuilder(
     mealsViewModel: MealsViewModel,
     navController: NavHostController,
     imageLoader: ImageLoader
@@ -75,7 +75,7 @@ fun NavGraphBuilder.MealDetailScreenBuilder(
     }
 }
 
-fun NavGraphBuilder.HelpAndSupportBuilder(
+fun NavGraphBuilder.helpAndSupportBuilder(
     navController: NavHostController,
     imageLoader: ImageLoader
 ) {
@@ -90,7 +90,11 @@ fun NavGraphBuilder.HelpAndSupportBuilder(
             Column {
                 Text(text = "Help And Support")
                 Button(
-                    onClick = { navController.navigate(Screen.MainScreen.route) }
+                    onClick = {
+                        navController.navigate(Screen.MainScreen.route) {
+                            navController.popBackStack()
+                        }
+                    }
                 ) {
                     Text(text = "Take me to the Main Screen")
                 }
@@ -99,7 +103,7 @@ fun NavGraphBuilder.HelpAndSupportBuilder(
     }
 }
 
-fun NavGraphBuilder.GiveFeedBackBuilder(
+fun NavGraphBuilder.giveFeedBackBuilder(
     navController: NavHostController,
     imageLoader: ImageLoader
 ) {
@@ -114,7 +118,11 @@ fun NavGraphBuilder.GiveFeedBackBuilder(
             Column {
                 Text(text = "Give Feedback")
                 Button(
-                    onClick = { navController.navigate(Screen.MainScreen.route) }
+                    onClick = {
+                        navController.navigate(Screen.MainScreen.route) {
+                            navController.popBackStack()
+                        }
+                    }
                 ) {
                     Text(text = "Take me to the Main Screen")
                 }
@@ -123,7 +131,7 @@ fun NavGraphBuilder.GiveFeedBackBuilder(
     }
 }
 
-fun NavGraphBuilder.ProfileScreenBuilder(
+fun NavGraphBuilder.profileScreenBuilder(
     navController: NavHostController,
     imageLoader: ImageLoader
 ) {
@@ -138,7 +146,11 @@ fun NavGraphBuilder.ProfileScreenBuilder(
             Column {
                 Text(text = "Profile Screen")
                 Button(
-                    onClick = { navController.navigate(Screen.MainScreen.route) }
+                    onClick = {
+                        navController.navigate(Screen.MainScreen.route) {
+                            navController.popBackStack()
+                        }
+                    }
                 ) {
                     Text(text = "Take me to the Main Screen")
                 }
@@ -149,7 +161,7 @@ fun NavGraphBuilder.ProfileScreenBuilder(
 
 
 @ExperimentalMaterialApi
-fun NavGraphBuilder.MainScreenBuilder(
+fun NavGraphBuilder.mainScreenBuilder(
     mealsViewModel: MealsViewModel,
     navController: NavHostController,
     imageLoader: ImageLoader
@@ -163,17 +175,20 @@ fun NavGraphBuilder.MainScreenBuilder(
     ) {
 
         MainScreen(
-            userId = it.arguments?.getString(MAIN_SCREEN_USER_ID_KEY) ?: "0",
             mealsViewModel,
             imageLoader,
             createRouter { route ->
-                navController.navigate(route)
+                navController.navigate(route) {
+                    popUpTo(Screen.MainScreen.route){
+                        inclusive
+                    }
+                }
             }
         )
     }
 }
 
-fun NavGraphBuilder.LoginBuilder(
+fun NavGraphBuilder.loginBuilder(
     navController: NavHostController,
     imageLoader: ImageLoader
 ) {
@@ -207,7 +222,7 @@ fun NavGraphBuilder.LoginBuilder(
     }
 }
 
-fun NavGraphBuilder.SplashScreenBuilder(
+fun NavGraphBuilder.splashScreenBuilder(
     navController: NavHostController
 ) {
     composable(

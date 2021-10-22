@@ -45,15 +45,15 @@ fun MealDetailScreen(
     Scaffold(
         bottomBar = {
             if (showChooseAPlan) {
-                    StandardButton(
-                        modifier = Modifier
-                            .height(60.dp)
-                            .fillMaxWidth()
-                            .padding(start = 16.dp, end = 16.dp, bottom = 8.dp, top = 1.dp),
-                        buttonText = "Add To Cart",
-                        onClick = { },
-                        buttonTextColor = MaterialTheme.colors.onPrimary
-                    )
+                StandardButton(
+                    modifier = Modifier
+                        .height(60.dp)
+                        .fillMaxWidth()
+                        .padding(start = 16.dp, end = 16.dp, bottom = 8.dp, top = 1.dp),
+                    buttonText = "Add To Cart",
+                    onClick = { },
+                    buttonTextColor = MaterialTheme.colors.onPrimary
+                )
 
             } else {
                 BottomAppBar(
@@ -63,7 +63,7 @@ fun MealDetailScreen(
                     StandardButton(
                         onClick = {
                             //  choose a plan clicked
-                                  showChooseAPlan = true
+                            showChooseAPlan = true
                         },
                         modifier = Modifier
                             .requiredHeight(70.dp)
@@ -188,6 +188,8 @@ fun MealDetailScreenInfo(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxWidth()
             )
+
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth(0.8f)
@@ -209,6 +211,7 @@ fun MealDetailScreenInfo(
                     )
                 }
             }
+
 
         }
         Row(
@@ -272,7 +275,6 @@ fun MealDetailScreenInfo(
 
     }
 }
-
 
 
 @Composable

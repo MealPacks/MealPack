@@ -1,5 +1,6 @@
-package `in`.mealpack.ui_drawer
+package `in`.mealpack.ui_drawer.ui
 
+import `in`.mealpack.ui_drawer.R
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,12 +22,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SideDrawer(
+fun SideDrawerScreen(
     onProfileClick: () -> Unit,
     onFeedbackClick: () -> Unit,
     onHelpClick: () -> Unit,
     onLogOutClicked: () -> Unit
-    ) {
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -35,6 +36,7 @@ fun SideDrawer(
         verticalArrangement = Arrangement.SpaceBetween
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+
             ProfileInfo()
 
             Column(
@@ -155,7 +157,7 @@ fun DrawerItem(
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
             .clickable {
-                onDrawerItemClicked
+                onDrawerItemClicked()
             }
             .background(MaterialTheme.colors.onPrimary.copy(0.3f))
             .padding(8.dp)
@@ -178,5 +180,5 @@ fun DrawerItem(
 @Composable
 fun SideDrawerPreview() {
 
-        SideDrawer({},{},{},{})
+        SideDrawerScreen({},{},{},{})
 }

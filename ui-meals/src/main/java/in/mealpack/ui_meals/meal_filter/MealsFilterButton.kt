@@ -1,6 +1,7 @@
 package `in`.mealpack.ui_meals.meals
 
 import `in`.mealpack.components.StandardButton
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyRow
@@ -18,6 +19,9 @@ fun MealsFilterButton(
     enabled: Boolean,
     onclick: (String) -> Unit
 ) {
+
+    Log.d("nameandselected","$enabled,$filterText")
+
     StandardButton(
         buttonText = filterText,
         buttonTextColor = if (!enabled)

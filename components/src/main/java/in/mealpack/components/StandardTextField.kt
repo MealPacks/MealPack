@@ -17,9 +17,9 @@ fun StandardTextField(
     onValueChange: (String) -> Unit,
     maxLength: Int = 40,
     hint: String = "",
+    leadingIcon: @Composable (() -> Unit)? = null,
     label: String = hint,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
-    isPassword: Boolean = false
 ) {
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
@@ -36,10 +36,7 @@ fun StandardTextField(
             Text(text = label)
         },
         keyboardOptions = keyboardOptions,
-        visualTransformation = if (isPassword)
-            PasswordVisualTransformation()
-        else
-            VisualTransformation.None
+        leadingIcon = leadingIcon
     )
 }
 

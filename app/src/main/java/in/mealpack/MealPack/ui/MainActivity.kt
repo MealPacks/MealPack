@@ -1,6 +1,5 @@
 package `in`.mealpack.MealPack.ui
 
-import `in`.mealpack.MealPack.ui.SetUpNavGraph
 import `in`.mealpack.MealPack.ui.theme.MealPackTheme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
