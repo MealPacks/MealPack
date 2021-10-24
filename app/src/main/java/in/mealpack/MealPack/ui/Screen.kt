@@ -13,6 +13,8 @@ const val MEAL_DETAIL_MEAL_ID_KEY ="mealId"
 const val MEAL_DETAIL_CART_ID_KEY ="cartId"
 
 const val PROFILE_SCREEN = "profile_screen"
+const val HISTORY_SCREEN = "history_screen"
+
 const val FEEDBACK_SCREEN = "give_feedback_screen"
 const val HELP_AND_SUPPORT_SCREEN = "help_and_support_screen"
 
@@ -25,6 +27,7 @@ sealed class Screen(
     //Login
     object LoginScreen : Screen(route = LOGIN_SCREEN)
 
+    //MainScreen
     object MainScreen : Screen(route = "$MAIN_SCREEN{$MAIN_SCREEN_USER_ID_KEY}") {
         fun sendUserId(id: String): String {
             return "$MAIN_SCREEN$id"
@@ -32,13 +35,11 @@ sealed class Screen(
     }
 
     //MealDetails
-    object MealDetailScreen : Screen(route = "$MEAL_DETAIL_SCREEN/{$MEAL_DETAIL_MEAL_ID_KEY}/{$MEAL_DETAIL_CART_ID_KEY}"){
-        fun sendMealIdAndCartId(mealId:String,cartId:Int):String{
-            return "$MEAL_DETAIL_SCREEN/$mealId/$cartId"
-        }
-    }
+    object MealDetailScreen : Screen(route = MEAL_DETAIL_SCREEN)
 
+    //DrawerScreens
     object ProfileScreen : Screen(route = PROFILE_SCREEN)
+    object HistoryScreen : Screen(route = HISTORY_SCREEN)
     object FeedbackScreen : Screen(route = FEEDBACK_SCREEN)
     object HelpAndSupportScreen : Screen(route = HELP_AND_SUPPORT_SCREEN)
 

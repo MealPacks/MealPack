@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,7 +27,8 @@ fun SideDrawerScreen(
     onProfileClick: () -> Unit,
     onFeedbackClick: () -> Unit,
     onHelpClick: () -> Unit,
-    onLogOutClicked: () -> Unit
+    onLogOutClicked: () -> Unit,
+    onHistoryClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -49,6 +51,16 @@ fun SideDrawerScreen(
                     modifier = Modifier.fillMaxWidth(0.7f)
                 ) {
                     onProfileClick()
+                }
+
+                SideDrawerDivider()
+
+                DrawerItem(
+                    title = "History",
+                    id = R.drawable.ic_history,
+                    modifier = Modifier.fillMaxWidth(0.7f)
+                ) {
+                    onHistoryClick()
                 }
 
                 SideDrawerDivider()
@@ -113,12 +125,12 @@ fun SideDrawerDivider() {
 @Composable
 fun ProfileInfo() {
     Column(
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Image(
             modifier = Modifier
-                .size(200.dp)
+                .size(100.dp)
                 .clip(CircleShape),
             painter = painterResource(id = R.drawable.bg_login),
             contentDescription = "User Photo",
@@ -165,7 +177,7 @@ fun DrawerItem(
         Icon(
             painter = painterResource(id),
             contentDescription = title,
-            tint = MaterialTheme.colors.onPrimary
+            tint = Color.Unspecified
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
@@ -180,5 +192,5 @@ fun DrawerItem(
 @Composable
 fun SideDrawerPreview() {
 
-        SideDrawerScreen({},{},{},{})
+    SideDrawerScreen({}, {}, {}, {},{})
 }

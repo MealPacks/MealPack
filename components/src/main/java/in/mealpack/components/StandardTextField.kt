@@ -16,6 +16,7 @@ fun StandardTextField(
     text: String,
     onValueChange: (String) -> Unit,
     maxLength: Int = 40,
+    maxLines: Int = 1,
     hint: String = "",
     leadingIcon: @Composable (() -> Unit)? = null,
     label: String = hint,
@@ -36,12 +37,13 @@ fun StandardTextField(
             Text(text = label)
         },
         keyboardOptions = keyboardOptions,
-        leadingIcon = leadingIcon
+        leadingIcon = leadingIcon,
+        maxLines = maxLines
     )
 }
 
 @Preview(showBackground = true)
 @Composable
 fun NormalTextFieldPreview() {
-    StandardTextField(text = "Normal Text Field", onValueChange = {}, hint = "Normal Text Field")
+    StandardTextField(text = "Normal Text Field", onValueChange = {}, hint = "Normal Text Field",maxLines = 1)
 }

@@ -28,8 +28,6 @@ D
 meal-data/.gitignore,9\8\98120b543cae14ca9988af611f716c3c314cc0c0
 K
 navigation/build.gradle.kts,7\2\72a63bd429fe806a7ac06bbbb579bf88f04b3e2b
-@
-build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d
 K
 components/build.gradle.kts,d\9\d990e76a36b10758d689b684cacddb68f4b00204
 L
@@ -56,8 +54,6 @@ J
 ui-cart/consumer-rules.pro,8\6\869976f7e0ca44bc7d5b066973aec67e0d51638b
 V
 &ui-drawer/src/main/AndroidManifest.xml,d\1\d10086f358750839f94a7fec19fdc5fc20447f22
-L
-drawer-data/build.gradle.kts,9\4\94726241461a3f1beb60ae9f57fa44f5406695db
 X
 (drawer-data/src/main/AndroidManifest.xml,7\6\768dff426418e8744571650e226b929e6660e420
 F
@@ -72,8 +68,6 @@ g
 7ui-cart/src/main/java/in/mealpack/ui_cart/CartScreen.kt,8\a\8af7078288fa15f8cd404984b310e097eda8e2f9
 j
 :ui-cart/src/main/java/in/mealpack/ui_cart/CartViewModel.kt,3\c\3cfcb795492429842becab3f8d5cdb7e55c76df8
-?
-settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
 L
 ui-myPlan/consumer-rules.pro,3\a\3a10cd08ff153a979850fbfacb66f4e446886527
 L
@@ -100,8 +94,6 @@ p
 @ui-login/src/main/java/in/mealpack/ui_login/util/LoginUiState.kt,1\b\1bcdeec5a20ae1cbe866060617a1113f7bb66a69
 u
 Emeal-domain/src/main/java/in/mealpack/meal_domain/model/MealEvents.kt,8\7\8732576216d0c3b7868c178932ed77c303d312ef
-S
-#buildSrc/src/main/kotlin/Modules.kt,9\8\9838349f15f060c03457518e2b77bc6242a79db5
 n
 >app/src/main/java/in/mealpack/MealPack/ui/navigation/Router.kt,8\1\81da4f62bd07590eafcffeb3258f7a21075df2ee
 
@@ -124,8 +116,6 @@ l
 <ui-login/src/main/java/in/mealpack/ui_login/di/UserModule.kt,3\a\3ae5483266510c5474a8e0e63ac7e5423ebf59fa
 i
 9app/src/main/java/in/mealpack/MealPack/di/FirestoreRef.kt,f\1\f1b5b93b29ea4b4acee0abc7763191cb1b23befb
-_
-/core/src/main/java/in/mealpack/core/DietType.kt,3\3\336c9bcda840441ce4e527cb39d76c923ac7079f
 P
  buildSrc/src/main/kotlin/Coil.kt,c\3\c387d0a0daf051c2a22d58a0c9933e136da360c1
 w

@@ -12,6 +12,8 @@ object Modules {
     const val meal_data=":meal-data"
 
     const val ui_drawer=":ui-drawer"
+    const val drawer_data=":drawer-data"
+    const val drawer_domain=":drawer-domain"
 
     const val user_domain=":user-domain"
     const val user_data=":user-data"
